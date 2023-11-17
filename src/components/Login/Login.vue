@@ -1,13 +1,10 @@
 <script setup>
-import { ref } from 'vue'
-
 import http from "@libs/http.js";
 import router from "../../routes.js";
 import {config, initialState, layout} from "./form.js";
 import FormBuilderGrid from "../core/FormBuilderGrid.vue";
 import {useForm} from "@libs/useForm.js";
 import {useToast} from "primevue/usetoast";
-import {getUser} from "../core/user.js";
 
 const toast = useToast();
 
@@ -21,8 +18,6 @@ async function login() {
   try {
     await http.get('sanctum/csrf-cookie');
     await http.post('login', formData);
-    await getUser();
-
     await router.push({name: 'dashboard'});
   } catch(axiosError) {
     toast.add({ severity: 'error', summary: 'Error', detail: axiosError.response.data.message, life: 5000 });

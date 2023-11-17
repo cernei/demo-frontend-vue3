@@ -1,10 +1,7 @@
 <script setup>
-import http from "@libs/http.js";
-import router from "./routes.js";
 import AppTopBar from "./components/AppTopBar.vue";
 import Button from "primevue/button";
-import {ref} from "vue";
-import {getUser, user} from "./components/core/user.js";
+import {user} from "./components/core/user.js";
 
 const routes = [
   { path: '/posts', permission: 'posts.view', label: 'Posts', icon: 'pi-comments'},

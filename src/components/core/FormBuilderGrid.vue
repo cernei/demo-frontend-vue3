@@ -1,7 +1,7 @@
 <script setup>
 
 import http from "@libs/http.js";
-import {computed, reactive} from "vue";
+import {reactive} from "vue";
 
 const props = defineProps(['form', 'layout'])
 
@@ -23,13 +23,11 @@ fieldNames.forEach(fieldName => {
 })
 
 function onSelect(fieldName, obj) {
-  console.log(fieldName, obj);
   props.form.state[fieldName] = obj.value.value;
 }
 </script>
 
 <template>
-  {{ form.state }}
   <div class="p-component">
     <div class="flex gap-3" v-for="row in layout">
       <div class="flex-1  mb-3" v-for="fieldName in row" >

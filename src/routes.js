@@ -2,8 +2,7 @@ import {createRouter, createWebHashHistory} from "vue-router";
 
 import Login from "./components/Login/Login.vue";
 import AdminPanel from "./AdminPanel.vue";
-import ProgressSpinner from "primevue/progressspinner";
-import {defineAsyncComponent} from "vue";
+
 
 import Users from './components/Users/Users.vue';
 import Categories from './components/Categories/Categories.vue';
@@ -20,9 +19,10 @@ import Dashboard from "./components/Dashboard.vue";
 // Each route should map to a component.
 // We'll talk about nested routes later.
 const routes = [
-    { name: 'login', path: '/login', component: Login },
+    { path: '/login', name: 'login', component: Login },
     {
-        path: '',
+        path: '/',
+        redirect: { name: "dashboard" }, // redirect property
         component: AdminPanel,
         children: [
         //    { path: '/map', component: CityMap, meta: { permission: 'authorized'} },
@@ -63,7 +63,6 @@ const guard = function (to, from, next) {
 };
 router.beforeEach(async (to, from, next) => {
     // maybe also close modals
-    console.log(to);
     if (to.meta.permission) {
         if (!user.value.permissions.length) {
             return getUser().then(() => {

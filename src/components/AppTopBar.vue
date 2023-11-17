@@ -6,8 +6,6 @@ import {useRoute} from "vue-router";
 import {computed} from "vue";
 import { user } from './core/user.js';
 
-const route = useRoute()
-const currentRouteName = computed(() => route.name);
 async function logout() {
   try {
     await http.get('api/logout');
@@ -25,7 +23,6 @@ async function logout() {
       <div class="text-xl">
         <Avatar icon="pi pi-user" class="m-1" style="background-color: #dee2e6; color: #ffffff" shape="circle" />
         <span style="color: #555;" class="ml-2">{{ user.name }}</span>
-        {{ currentRouteName }}
       </div>
 
     </div>
