@@ -16,7 +16,7 @@ const { submit } = useCreate(url, form);
 </script>
 
 <template>
-  <div class="bg-gray-100 p-3 w-5 p-component">
+  <div class="surface-card p-4 shadow-2 border-round w-5 lg:w-6">
     <div class="text-3xl mb-3">Create {{ entityName }}</div>
     <FormBuilderGrid :form="form" :layout="layout" />
     <Button class="m-2" severity="success" label="Submit" @click="submit" />

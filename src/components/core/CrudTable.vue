@@ -1,5 +1,5 @@
 <script setup>
-import {onMounted, ref} from 'vue'
+import {computed, onMounted, ref} from 'vue'
 
 import http from '@libs/http.js';
 import {FilterMatchMode} from "primevue/api";
@@ -21,6 +21,7 @@ Object.keys(props.config.columns).forEach(columnsName => {
     filters.value[columnsName] = { value: null, matchMode: FilterMatchMode.STARTS_WITH };
   }
 });
+const filterHasValue = computed(() => Object.keys(filters.value).some((key) => filters.value[key].value));
 
 function deleteItem(data) {
   confirm.require({
@@ -69,7 +70,7 @@ function onSortOrder(order) {
 
 <template>
   <ConfirmDialog></ConfirmDialog>
-  <template v-if="pagination.data && pagination.data.length">
+  <template v-if="filterHasValue || pagination.data && pagination.data.length">
     <DataTable :value="pagination.data" lazy tableStyle="min-width: 50rem"
                :filterDisplay="hasFilters ? 'row' : ''"
                @filter="onFilter($event)"

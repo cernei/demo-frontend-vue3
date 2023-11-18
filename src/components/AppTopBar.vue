@@ -2,13 +2,12 @@
 import http from "@libs/http";
 import router from "../routes.js";
 import Avatar from 'primevue/avatar';
-import {useRoute} from "vue-router";
-import {computed} from "vue";
 import { user } from './core/user.js';
 
 async function logout() {
   try {
     await http.get('api/logout');
+    user.value.permissions = [];
     await router.push({name: 'login'})
   } catch(error) {
 
