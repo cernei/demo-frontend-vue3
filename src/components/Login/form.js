@@ -23,4 +23,4 @@ export const config = {
         },
     },
 };
-export const initialState  = { email: '', password: '' };
+export const initialState  = { email: 'admin@gmail.com', password: '12345678' };

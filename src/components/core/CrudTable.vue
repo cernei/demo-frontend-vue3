@@ -13,6 +13,7 @@ const confirm = useConfirm();
 const hasFilters = ref(false);
 const currentPage = ref(0);
 const sortField = ref('');
+const executionTime = ref(0);
 
 const filters = ref({});
 Object.keys(props.config.columns).forEach(columnsName => {
@@ -44,12 +45,15 @@ onMounted( async () => {
 })
 async function loadPaginated(page = 0, sortOrder = 1) {
   currentPage.value = page;
+  const startTime = new Date();
   const response = await http.post("api/query", {
     entity: props.config.entity,
     filters: filters.value,
     sort: { field: sortField.value, order: sortOrder},
     page: (page + 1),
   });
+  executionTime.value = new Date() - startTime;
+
   const axiosResponse = response.data;
   pagination.value = axiosResponse.data;
 }
@@ -92,7 +96,7 @@ function onSortOrder(order) {
             <template #body="{ data }">
               {{  $filters.truncate(data[index], 100) }}
             </template>
-            <template #filter="{ filterModel, filterCallback }">
+            <template #filter="{ filterModel, filterCallback }" >
               <InputText v-model="filterModel.value"
                          type="text"
                          @keydown.enter="filterCallback"
@@ -107,19 +111,25 @@ function onSortOrder(order) {
       </template>
       <Column header="Actions">
         <template #body="slotProps">
-          <Button v-if="user.permissions.includes(config.entity + '.edit')" @click="editItem(slotProps.data)"  severity="warning" size="small" icon="pi pi-pencil" />
-          <Button v-if="user.permissions.includes(config.entity + '.delete')" @click="deleteItem(slotProps.data)"  severity="danger" size="small" icon="pi pi-trash" class="ml-2"/>
+          <Button v-if="user.permissions.includes(config.entity + '.edit')" @click="editItem(slotProps.data)"  severity="secondary" outlined size="small" icon="pi pi-pencil" class="smallButton" />
+          <Button v-if="user.permissions.includes(config.entity + '.delete')" @click="deleteItem(slotProps.data)"  severity="secondary" outlined  size="small" icon="pi pi-trash" class="ml-2 smallButton"/>
         </template>
       </Column>
     </DataTable>
-    <Paginator :rows="pagination.per_page"
-               :first="currentPage * pagination.per_page"
-               :totalRecords="pagination.total"
-               template="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport"
-               :rowsPerPageOptions="[20, 50, 100]"
-               @page="paginatorChange">
+    <div class="footer">
+      <div>Query took: {{ executionTime }} ms</div>
+      <Paginator :rows="pagination.per_page"
+                 :first="currentPage * pagination.per_page"
+                 :totalRecords="pagination.total"
+                 template="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport"
+                 :rowsPerPageOptions="[20, 50, 100]"
+                 @page="paginatorChange">
 
-    </Paginator>
+      </Paginator>
+      <div style="text-align: right">
+        Total: {{ pagination.total }}
+      </div>
+    </div>
   </template>
   <template v-else>
     <div class="text-3xl flex justify-content-center">No data</div>
@@ -127,4 +137,13 @@ function onSortOrder(order) {
 </template>
 
 <style scoped>
+.footer {
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+  align-items: center;
+}
+.smallButton {
+  padding: 0.25rem;
+  width: 2rem;
+}
 </style>

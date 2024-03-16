@@ -7,3 +7,9 @@ export async function getUser() {
         user.value = response.data.data;
     });
 }
+
+export async function trackView(url) {
+    return http.post('api/access_log', {
+        url
+    });
+}

@@ -11,9 +11,10 @@ import Roles from './components/Roles/Roles.vue';
 
 import Create from "./components/core/Create.vue";
 import Edit from "./components/core/Edit.vue";
-import {getUser, user} from "./components/core/user.js";
+import {getUser, trackView, user} from "./components/core/user.js";
 import Forbidden from "./components/Forbidden.vue";
 import Dashboard from "./components/Dashboard.vue";
+import AccessLog from "./components/AccessLog/AccessLog.vue";
 
 // 2. Define some routes
 // Each route should map to a component.
@@ -28,6 +29,8 @@ const routes = [
         //    { path: '/map', component: CityMap, meta: { permission: 'authorized'} },
         //    { path: '/form-editor', component: FormEditor, meta: { permission: 'authorized'} },
         //    { path: '/book', component: Huge, meta: { permission: 'authorized'} },
+            { path: '/access_log', name: 'access_log', component: AccessLog, meta: { permission: 'authorized'} },
+
             { path: '/forbidden', name: 'forbidden', component: Forbidden, meta: { permission: 'authorized'} },
             { path: '/dashboard', name: 'dashboard', component: Dashboard, meta: { permission: 'authorized'} },
             { path: '/users', name: 'users', component: Users, meta: { permission: 'users.view'} },
@@ -56,13 +59,16 @@ const router = createRouter({
 });
 const guard = function (to, from, next) {
     if (user.value.permissions.includes(to.meta.permission)) {
+        // make tracking to run after, since it has low priority
+        setTimeout(() => {
+            trackView(to.fullPath);
+        }, 100);
         next();
     } else {
         next({ name: "forbidden" });
     }
 };
 router.beforeEach(async (to, from, next) => {
-    // maybe also close modals
     if (to.meta.permission) {
         if (!user.value.permissions.length) {
             return getUser().then(() => {

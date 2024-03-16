@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const host = process.env.HOST ? process.env.HOST : 'http://localhost:8000';
+const host = import.meta.env.VITE_HOST ? import.meta.env.VITE_HOST : 'http://localhost:8080/backend';
 
 const http = axios.create({
     baseURL: host,

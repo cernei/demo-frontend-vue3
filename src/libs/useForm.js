@@ -43,7 +43,7 @@ export function useForm(config, initialState) {
         });
         form.submitted = true;
 
-        return Object.values(errors).every(value => !value);
+        return Object.values(form.errors).every(value => !value);
     }
     function validate(fieldName) {
         const rules = config[fieldName].validation;
@@ -56,7 +56,7 @@ export function useForm(config, initialState) {
                     return firstError;
                 }
             });
-            errors[fieldName] = firstError;
+            form.errors[fieldName] = firstError;
         }
     }
 

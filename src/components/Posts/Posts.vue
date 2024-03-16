@@ -19,7 +19,7 @@ const config = {
     <div class="text-5xl">Posts</div>
     <template v-if="user.permissions.includes('posts.create')">
       <router-link :to="{ name: 'posts.create' }">
-        <Button label="Create" severity="success" class="mr-5" />
+        <Button label="Create" severity="secondary" outlined class="mr-5" />
       </router-link>
     </template>
   </div>
