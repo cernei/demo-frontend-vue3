@@ -72,7 +72,7 @@ function onSelect(fieldName, obj) {
           <div class="flex flex-column gap-3 ml-3">
             <div v-for="option in dictionaries[fieldName]" :key="option.id" class="flex align-items-center gap-1">
               <Checkbox v-model="form.state[fieldName]" :inputId="option.id" :name="fieldName" :value="option.id" />
-              <label :for="option.id" class="text-800 text-sm">{{ option.name }}</label>
+              <label :for="option.id" class="text-800 text-sm ml-1">{{ option.name }}</label>
             </div>
           </div>
           <small class="p-error ml-1">{{ getError(fieldName) }}</small>

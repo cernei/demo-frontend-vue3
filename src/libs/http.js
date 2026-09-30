@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const host = import.meta.env.VITE_HOST ? import.meta.env.VITE_HOST : 'http://localhost:8080/backend';
+const host = import.meta.env.VITE_HOST ? import.meta.env.VITE_HOST : 'https://demo-laravel-backend.cernei.md';
 
 const http = axios.create({
     baseURL: host,

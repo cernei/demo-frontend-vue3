@@ -11,16 +11,15 @@ const toast = useToast();
 const { form } = useForm(config, initialState);
 
 async function login() {
-  const formData = new FormData();
-  formData.append("email", form.state.email);
-  formData.append("password", form.state.password);
 
   try {
-    await http.get('sanctum/csrf-cookie');
-    await http.post('login', formData);
+    const result = await http.post('api/login', { email: form.state.email, password: form.state.password});
+    console.log(result);
     await router.push({name: 'dashboard'});
   } catch(axiosError) {
-    toast.add({ severity: 'error', summary: 'Error', detail: axiosError.response.data.message, life: 5000 });
+    const err = axiosError.response?.data?.message ?? axiosError.message;
+
+    toast.add({ severity: 'error', summary: 'Error', detail: err, life: 5000 });
   }
 }
 function submit() {
@@ -32,7 +31,7 @@ function submit() {
 
 <template>
   <div class="flex justify-content-center mt-5">
-    <div class="surface-card p-4 shadow-2 border-round w-full lg:w-6">
+    <div class="surface-card p-4 mt-8 shadow-2 border-round w-full md:w-30rem">
       <div class="text-center mb-5">
         <div class="text-900 text-3xl font-medium mb-3">Admin Panel</div>
       </div>

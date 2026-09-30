@@ -3,6 +3,10 @@ import http from "@libs/http.js";
 
 export const user = ref({permissions: []});
 export async function getUser() {
+    // return http.get('api/debug').then((response) => {
+    //     user.value = response.data.data;
+    // });
+
     return http.get('api/user').then((response) => {
         user.value = response.data.data;
     });

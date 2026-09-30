@@ -24,7 +24,7 @@ const routes = [
           </router-link>
         </template>
       </div>
-      <div class="flex-grow-1 p-2">
+      <div class="flex-grow-1 min-w-0 p-2">
         <router-view></router-view>
       </div>
     </div>
