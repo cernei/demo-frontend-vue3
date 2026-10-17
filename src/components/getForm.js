@@ -1,12 +1,12 @@
-import * as postsForm from "./Posts/form.js";
+import * as productsForm from "./Products/form.js";
 import * as categoriesForm from "./Categories/form.js";
 import * as usersFormCreate from "./Users/formCreate.js";
 import * as usersFormUpdate from "./Users/formUpdate.js";
 import * as rolesForm from "./Roles/form.js";
 
 const moduleMap = {
-    'posts.create': {module: postsForm},
-    'posts.edit': {module: postsForm},
+    'products.create': {module: productsForm},
+    'products.edit': {module: productsForm},
 
     'categories.create': {module: categoriesForm},
     'categories.edit': {module: categoriesForm},

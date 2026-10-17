@@ -6,7 +6,7 @@ import { user } from './core/user.js';
 
 async function logout() {
   try {
-    await http.get('api/logout');
+    await http.get('/logout');
     user.value.permissions = [];
     await router.push({name: 'login'})
   } catch(error) {

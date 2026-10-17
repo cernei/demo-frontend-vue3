@@ -7,13 +7,13 @@ export async function getUser() {
     //     user.value = response.data.data;
     // });
 
-    return http.get('api/user').then((response) => {
+    return http.get('/user').then((response) => {
         user.value = response.data.data;
     });
 }
 
 export async function trackView(url) {
-    return http.post('api/access_log', {
+    return http.post('/access_log', {
         url
     });
 }

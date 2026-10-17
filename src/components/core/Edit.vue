@@ -17,7 +17,7 @@ const { layout, config, initialState, url, entityName } = getForm(currentRouteNa
 const { form } = useForm(config, initialState);
 const { submit } = useUpdate(url, route.params.id, form);
 
-http.get(`api/${url}/${route.params.id}/edit`).then((response) => {
+http.get(`/${url}/${route.params.id}/edit`).then((response) => {
   form.state = response.data.data;
 }).catch((axiosError) => {
   toast.add({ severity: 'error', summary: 'Error', detail: axiosError.response.data.message, life: 5000 });

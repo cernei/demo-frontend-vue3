@@ -6,7 +6,7 @@ export function useCreate(entity, form) {
     const toast = useToast();
 
     function create() {
-        http.post('api/' + entity, form.state).then(() => {
+        http.post(entity, form.state).then(() => {
           router.push({ name: entity });
         }).catch((axiosError) => {
           toast.add({ severity: 'error', summary: 'Error', detail: axiosError.response.data.message, life: 5000 });

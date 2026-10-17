@@ -13,7 +13,7 @@ const { form } = useForm(config, initialState);
 async function login() {
 
   try {
-    const result = await http.post('api/login', { email: form.state.email, password: form.state.password});
+    const result = await http.post('/login', { email: form.state.email, password: form.state.password});
     console.log(result);
     await router.push({name: 'dashboard'});
   } catch(axiosError) {

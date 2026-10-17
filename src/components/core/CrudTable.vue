@@ -30,7 +30,7 @@ function deleteItem(data) {
     header: 'Confirmation',
     icon: 'pi pi-exclamation-triangle',
     accept: () => {
-      http.delete(`api/${props.config.entity}/${data.id}`).then(() => {
+      http.delete(`/${props.config.entity}/${data.id}`).then(() => {
         loadPaginated(0);
       });
     },
@@ -46,7 +46,7 @@ onMounted( async () => {
 async function loadPaginated(page = 0, sortOrder = 1) {
   currentPage.value = page;
   const startTime = new Date();
-  const response = await http.post("api/query", {
+  const response = await http.post("/query", {
     entity: props.config.entity,
     filters: filters.value,
     sort: { field: sortField.value, order: sortOrder},
@@ -145,5 +145,8 @@ function onSortOrder(order) {
 .smallButton {
   padding: 0.25rem;
   width: 2rem;
+}
+.actions-column {
+  white-space: nowrap;
 }
 </style>

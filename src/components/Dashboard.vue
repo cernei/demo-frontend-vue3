@@ -130,7 +130,7 @@ fetchTables()
         <section class="mt-3 min-w-0">
             <div v-if="loading.tables" class="py-12 text-center text-sm ">Loading dashboard...</div>
             <div v-for="(rows, tableName) in tables" :key="tableName">
-                <h2 class="pt-8 text-lg font-bold">{{ tableName }}</h2>
+                <h2 class="pt-4 text-lg font-bold">{{ tableName }}</h2>
                 <div class="mt-2 w-full min-w-0 max-w-full overflow-x-auto">
                     <table class="dashboard-table text-left">
                         <thead v-if="rows.length" class="surface-50">

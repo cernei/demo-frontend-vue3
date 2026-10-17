@@ -6,7 +6,7 @@ import AdminPanel from "./AdminPanel.vue";
 
 import Users from './components/Users/Users.vue';
 import Categories from './components/Categories/Categories.vue';
-import Posts from './components/Posts/Posts.vue';
+import Products from './components/Products/Products.vue';
 import Roles from './components/Roles/Roles.vue';
 
 import Create from "./components/core/Create.vue";
@@ -15,6 +15,7 @@ import {getUser, trackView, user} from "./components/core/user.js";
 import Forbidden from "./components/Forbidden.vue";
 import Dashboard from "./components/Dashboard.vue";
 import AccessLog from "./components/AccessLog/AccessLog.vue";
+import Attributes from "./components/Attributes/Attributes.vue";
 
 // 2. Define some routes
 // Each route should map to a component.
@@ -37,9 +38,9 @@ const routes = [
             { path: '/users/create', name: 'users.create', component: Create, meta: { permission: 'users.create'} },
             { path: '/users/:id/edit', name: 'users.edit', component: Edit, meta: { permission: 'users.edit'} },
 
-            { path: '/posts', name: 'posts', component: Posts, meta: { permission: 'posts.view'} },
-            { path: '/posts/create', name: 'posts.create', component: Create, meta: { permission: 'posts.create'} },
-            { path: '/posts/:id/edit', name: 'posts.edit', component: Edit, meta: { permission: 'posts.edit'} },
+            { path: '/products', name: 'products', component: Products, meta: { permission: 'products.view'} },
+            { path: '/products/create', name: 'products.create', component: Create, meta: { permission: 'products.create'} },
+            { path: '/products/:id/edit', name: 'products.edit', component: Edit, meta: { permission: 'products.edit'} },
 
             { path: '/categories', name: 'categories', component: Categories, meta: { permission: 'categories.view'} },
             { path: '/categories/create', name: 'categories.create', component: Create, meta: { permission: 'categories.create'} },
@@ -49,6 +50,9 @@ const routes = [
             { path: '/roles/create', name: 'roles.create', component: Create, meta: { permission: 'roles.create'} },
             { path: '/roles/:id/edit', name: 'roles.edit', component: Edit, meta: { permission: 'roles.edit'} },
 
+            { path: '/attributes', name: 'attributes', component: Attributes, meta: { permission: 'attributes.view'} },
+            { path: '/attributes/create', name: 'attributes.create', component: Create, meta: { permission: 'attributes.create'} },
+            { path: '/attributes/:id/edit', name: 'attributes.edit', component: Edit, meta: { permission: 'attributes.edit'} },
         ]
     },
 ];

@@ -14,7 +14,7 @@ const dictionaries = reactive({});
 fieldNames.forEach(fieldName => {
   const field = props.form.config[fieldName];
   if (field.dictionary) {
-    http.post('api/dictionaries/' + field.dictionary).then((axiosResponse) => {
+    http.post('/dictionaries/' + field.dictionary).then((axiosResponse) => {
       dictionaries[fieldName] = axiosResponse.data.data;
     })
   } else if(field.options) {

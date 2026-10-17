@@ -1,20 +1,25 @@
 export const layout = [
-    ['content'],
+    ['title'],
+    ['description'],
     ['category_id'],
 ];
 
 export const config = {
-    content: {
+    title: {
+        component: 'text',
+        label: 'Title',
+        validation: {
+            required: true,
+            max: 255
+        },
+    },
+    description: {
         component: 'textarea',
-        label: 'Content',
+        label: 'Description',
         validation: {
             required: true,
             max: 2000
         },
-        // onChange: ({fields, value, validate}) => {
-        //     fields.employees_count.urlParam = value;
-        //     validate('employees_count');
-        // }
     },
     category_id: {
         component: 'select',
