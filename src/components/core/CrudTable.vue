@@ -37,7 +37,7 @@ function deleteItem(data) {
   });
 }
 function editItem(data) {
-  router.push({ name: props.config.entity + '.edit', params: { id: data.id }});
+  router.push({ name: props.config.entity.replace('_', '-') + '.edit', params: { id: data.id }});
 }
 const pagination = ref({});
 onMounted( async () => {

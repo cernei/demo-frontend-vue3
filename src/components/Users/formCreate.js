@@ -1,7 +1,6 @@
 export const layout = [
     ['name'],
     ['email'],
-    ['role_id'],
     ['password'],
 ];
 
@@ -21,14 +20,6 @@ export const config = {
             required: true,
             pattern: 'email',
             max: 128,
-        },
-    },
-    role_id: {
-        component: 'select',
-        label: 'Role',
-        dictionary: 'roles',
-        validation: {
-            required: true,
         },
     },
     password: {

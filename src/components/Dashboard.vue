@@ -55,7 +55,7 @@ function isDateColumn(column) {
 }
 
 async function fetchTables() {
-    const response = await http.get('api/data');
+    const response = await http.get('/data');
     const data = response.data;
     Object.keys(tables).forEach((tableName) => {
         tables[tableName] = Array.isArray(data[tableName]) ? data[tableName] : [];
@@ -90,7 +90,7 @@ async function sendInvoices() {
     await apiRequest(
         testCases.map((comment, index) => ({
             method: 'post',
-            url: 'api/webhooks/invoices',
+            url: '/webhooks/invoices',
             data: { ...invoiceTemplate, invoice_id: `INV-2026-0${index}`, comment }
         })),
         'batch'
@@ -98,11 +98,11 @@ async function sendInvoices() {
 }
 
 async function clearAll() {
-    await apiRequest('api/clear-all', 'clear');
+    await apiRequest('clear-all', 'clear');
 }
 
 async function runWorkers() {
-    await apiRequest(['api/shipment-job-test', 'api/shipment-job-test'], 'workers');
+    await apiRequest(['shipment-job-test', 'shipment-job-test'], 'workers');
 }
 
 fetchTables()

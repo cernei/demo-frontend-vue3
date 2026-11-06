@@ -3,10 +3,10 @@ import {user} from "../core/user.js";
 
 const columns = {
   id: { label: 'ID'},
-  title: { label: 'Title' },
-  description: { label: 'Content', search: true },
+  name: { label: 'Name' },
+  description: { label: 'Description', search: true },
   category: { label: 'Category' },
-  user: { label: 'Created by' },
+  price: { label: 'Price' },
   created_at: { label: 'Created at'},
 }
 const config = {

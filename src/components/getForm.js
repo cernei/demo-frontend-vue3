@@ -1,18 +1,30 @@
+import * as ordersForm from "./Orders/form.js";
+import * as stockLocationsForm from "./StockLocations/form.js";
+import * as stockItemsForm from "./StockItems/form.js";
 import * as productsForm from "./Products/form.js";
 import * as categoriesForm from "./Categories/form.js";
-import * as usersFormCreate from "./Users/formCreate.js";
-import * as usersFormUpdate from "./Users/formUpdate.js";
+import * as adminsFormCreate from "./Admins/formCreate.js";
+import * as adminsFormUpdate from "./Admins/formUpdate.js";
 import * as rolesForm from "./Roles/form.js";
 
 const moduleMap = {
+    'orders.create': {module: ordersForm},
+    'orders.edit': {module: ordersForm},
+
+    'stock-locations.create': {module: stockLocationsForm},
+    'stock-locations.edit': {module: stockLocationsForm},
+
+    'stock-items.create': {module: stockItemsForm},
+    'stock-items.edit': {module: stockItemsForm},
+
     'products.create': {module: productsForm},
     'products.edit': {module: productsForm},
 
     'categories.create': {module: categoriesForm},
     'categories.edit': {module: categoriesForm},
 
-    'users.create': {module: usersFormCreate},
-    'users.edit': {module: usersFormUpdate},
+    'admins.create': {module: adminsFormCreate},
+    'admins.edit': {module: adminsFormUpdate},
 
     'roles.create': {module: rolesForm},
     'roles.edit': {module: rolesForm},
@@ -30,6 +42,8 @@ function toSingular(plural) {
 }
 
 export function getForm(moduleName) {
+    if (!moduleMap[moduleName])
+        throw "cannot find module " + moduleName;
     const selectedModule = moduleMap[moduleName].module;
     const plural = moduleName.split('.')[0];
     return selectedModule

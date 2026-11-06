@@ -16,6 +16,10 @@ import Forbidden from "./components/Forbidden.vue";
 import Dashboard from "./components/Dashboard.vue";
 import AccessLog from "./components/AccessLog/AccessLog.vue";
 import Attributes from "./components/Attributes/Attributes.vue";
+import Admins from "./components/Admins/Admins.vue";
+import Orders from "./components/Orders/Orders.vue";
+import StockLocations from "./components/StockLocations/StockLocations.vue";
+import StockItems from "./components/StockItems/StockItems.vue";
 
 // 2. Define some routes
 // Each route should map to a component.
@@ -34,13 +38,26 @@ const routes = [
 
             { path: '/forbidden', name: 'forbidden', component: Forbidden, meta: { permission: 'authorized'} },
             { path: '/dashboard', name: 'dashboard', component: Dashboard, meta: { permission: 'authorized'} },
-            { path: '/users', name: 'users', component: Users, meta: { permission: 'users.view'} },
-            { path: '/users/create', name: 'users.create', component: Create, meta: { permission: 'users.create'} },
-            { path: '/users/:id/edit', name: 'users.edit', component: Edit, meta: { permission: 'users.edit'} },
+
+            { path: '/admins', name: 'admins', component: Admins, meta: { permission: 'admins.view'} },
+            { path: '/admins/create', name: 'admins.create', component: Create, meta: { permission: 'admins.create'} },
+            { path: '/admins/:id/edit', name: 'admins.edit', component: Edit, meta: { permission: 'admins.edit'} },
 
             { path: '/products', name: 'products', component: Products, meta: { permission: 'products.view'} },
             { path: '/products/create', name: 'products.create', component: Create, meta: { permission: 'products.create'} },
             { path: '/products/:id/edit', name: 'products.edit', component: Edit, meta: { permission: 'products.edit'} },
+
+            { path: '/orders', name: 'orders', component: Orders, meta: { permission: 'orders.view'} },
+            { path: '/orders/create', name: 'orders.create', component: Create, meta: { permission: 'orders.create'} },
+            { path: '/orders/:id/edit', name: 'orders.edit', component: Edit, meta: { permission: 'orders.edit'} },
+
+            { path: '/stock-locations', name: 'stock-locations', component: StockLocations, meta: { permission: 'stock_locations.view'} },
+            { path: '/stock-locations/create', name: 'stock-locations.create', component: Create, meta: { permission: 'stock_locations.create'} },
+            { path: '/stock-locations/:id/edit', name: 'stock-locations.edit', component: Edit, meta: { permission: 'stock_locations.edit'} },
+
+            { path: '/stock-items', name: 'stock-items', component: StockItems, meta: { permission: 'stock_items.view'} },
+            { path: '/stock-items/create', name: 'stock-items.create', component: Create, meta: { permission: 'stock_items.create'} },
+            { path: '/stock-items/:id/edit', name: 'stock-items.edit', component: Edit, meta: { permission: 'stock_items.edit'} },
 
             { path: '/categories', name: 'categories', component: Categories, meta: { permission: 'categories.view'} },
             { path: '/categories/create', name: 'categories.create', component: Create, meta: { permission: 'categories.create'} },

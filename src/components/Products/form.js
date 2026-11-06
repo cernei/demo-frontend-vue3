@@ -1,13 +1,22 @@
 export const layout = [
-    ['title'],
-    ['description'],
+    ['name'],
     ['category_id'],
+    ['price'],
+    ['description'],
 ];
 
 export const config = {
-    title: {
+    name: {
         component: 'text',
-        label: 'Title',
+        label: 'Name',
+        validation: {
+            required: true,
+            max: 255
+        },
+    },
+    price: {
+        component: 'text',
+        label: 'Price',
         validation: {
             required: true,
             max: 255
@@ -30,4 +39,4 @@ export const config = {
         },
     },
 };
-export const initialState  = { name: '' };
+export const initialState  = { name: '', description: '', price: 0, category_id: 0 };

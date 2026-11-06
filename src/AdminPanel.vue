@@ -4,10 +4,15 @@ import Button from "primevue/button";
 import {user} from "./components/core/user.js";
 
 const routes = [
+  { path: '/orders', permission: 'orders.view', label: 'Products', icon: 'pi-shopping-cart'},
+  { path: '/stock-locations', permission: 'stock_locations.view', label: 'Stock locations', icon: 'pi-objects-column'},
+
+  { path: '/stock-items', permission: 'stock_items.view', label: 'Stock items', icon: 'pi-warehouse'},
   { path: '/products', permission: 'products.view', label: 'Products', icon: 'pi-box'},
+
   { path: '/categories', permission: 'categories.view', label: 'Categories', icon: 'pi-tag'},
   { path: '/attributes', permission: 'roles.view', label: 'Roles', icon: 'pi-tags'},
-  { path: '/users', permission: 'users.view', label: 'Users', icon: 'pi-users'},
+  { path: '/admins', permission: 'admins.view', label: 'Admins', icon: 'pi-users'},
   { path: '/roles', permission: 'roles.view', label: 'Roles', icon: 'pi-shield'},
 ];
 </script>
