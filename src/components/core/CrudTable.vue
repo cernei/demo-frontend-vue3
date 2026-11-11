@@ -116,17 +116,18 @@ function onSortOrder(order) {
         </template>
       </Column>
     </DataTable>
-    <div class="footer">
-      <div>Query took: {{ executionTime }} ms</div>
+    <div class="flex flex-column md:flex-row align-items-center">
+      <div class="w-full md:w-2">Query took: {{ executionTime }} ms</div>
       <Paginator :rows="pagination.per_page"
                  :first="currentPage * pagination.per_page"
                  :totalRecords="pagination.total"
                  template="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport"
                  :rowsPerPageOptions="[20, 50, 100]"
-                 @page="paginatorChange">
+                 @page="paginatorChange"
+                 class="w-full md:w-8">
 
       </Paginator>
-      <div style="text-align: right">
+      <div class="w-full md:w-2">
         Total: {{ pagination.total }}
       </div>
     </div>
@@ -137,11 +138,7 @@ function onSortOrder(order) {
 </template>
 
 <style scoped>
-.footer {
-  display: grid;
-  grid-template-columns: 20% 60% 20%;
-  align-items: center;
-}
+
 .smallButton {
   padding: 0.25rem;
   width: 2rem;

@@ -4,6 +4,7 @@ import Button from "primevue/button";
 import {user} from "./components/core/user.js";
 
 const routes = [
+  { path: '/dashboard', permission: 'authorized', label: 'Dashboard', icon: 'pi-chart-line'},
   { path: '/orders', permission: 'orders.view', label: 'Products', icon: 'pi-shopping-cart'},
   { path: '/stock-locations', permission: 'stock_locations.view', label: 'Stock locations', icon: 'pi-objects-column'},
 
